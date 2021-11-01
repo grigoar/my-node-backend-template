@@ -1,11 +1,16 @@
 const express = require('express');
+const morgan = require('morgan');
+
 const app = express();
-const port = 3000;
+
+console.log(process.env.NODE_ENV);
+//setup morgan for logging
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+}
 
 app.get('/', (req, res) => {
   res.send('Hello Node.js world!');
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
-});
+module.exports = app;

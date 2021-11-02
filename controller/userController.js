@@ -1,15 +1,32 @@
-exports.createUser = (req, res) => {
-  // console.log(req.params.id);
+const User = require('../models/userModel');
 
-  res.status(200).json({
-    status: 'success',
-    data: req.body,
-  });
+exports.createUser = async (req, res) => {
+  // console.log(req.params.id);
+  try {
+    const newUser = await User.create(req.body);
+    res.status(200).json({
+      status: 'success',
+      data: newUser,
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: 'fail',
+      message: err,
+    });
+  }
 };
 
-exports.getAllUsers = (req, res) => {
-  res.status(200).json({
-    status: 'success',
-    data: 'user list',
-  });
+exports.getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find();
+    res.status(200).json({
+      status: 'success',
+      data: users,
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: 'fail',
+      message: err,
+    });
+  }
 };

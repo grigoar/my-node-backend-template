@@ -40,7 +40,7 @@ if (process.env.NODE_ENV !== 'production') {
 // app.get('/users',getAllUsers);
 // app.post('/users', createUser);
 // app.get('/users/:id', getUser);
-app.use('/users', userRouter);
+app.use('/api/v1/users', userRouter);
 // app.route('/users').get(getAllUsers).post(createUser);
 
 module.exports = app;

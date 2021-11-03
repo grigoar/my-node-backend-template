@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
-const winston = require('winston');
+
+// const logger = require('./utils/logger');
 
 const userRouter = require('./routes/userRoutes');
 const AppError = require('./utils/appError');
@@ -16,24 +17,10 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
-//setup winston for logging in production
-const logger = winston.createLogger({
-  level: 'info',
-  format: winston.format.json(),
-  defaultMeta: { service: 'user-service' },
-  transports: [
-    new winston.transports.File({ filename: 'error.log', level: 'error' }),
-    new winston.transports.File({ filename: 'combined.log' }),
-  ],
-});
-
-if (process.env.NODE_ENV !== 'production') {
-  logger.add(
-    new winston.transports.Console({
-      format: winston.format.simple(),
-    })
-  );
-}
+// logger.log('info', 'hello', { message: ' i am happy to log my errors' });
+// logger.log('error', 'hello this is some error logging test');
+// logger.info('world');
+// logger.error('This is serious');
 
 // app.get('/', (req, res) => {
 //   res.send('Hello Node.js world!');

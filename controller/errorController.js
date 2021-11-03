@@ -20,7 +20,7 @@ const sendErrorProd = (err, req, res) => {
   }
 };
 
-module.exports = (err, req, res, next) => {
+module.exports = (err, req, res) => {
   console.log(err);
 
   // eslint-disable-next-line no-param-reassign
@@ -35,9 +35,4 @@ module.exports = (err, req, res, next) => {
     error.message = err.message;
     sendErrorProd(error, req, res);
   }
-
-  //   res.status(err.statusCode).json({
-  //     status: err.status,
-  //     message: err.message,
-  //   });
 };

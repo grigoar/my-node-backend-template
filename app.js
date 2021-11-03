@@ -3,6 +3,8 @@ const morgan = require('morgan');
 const winston = require('winston');
 
 const userRouter = require('./routes/userRoutes');
+const AppError = require('./utils/appError');
+const globalErrorHandler = require('./controller/errorController');
 
 const app = express();
 
@@ -41,6 +43,11 @@ if (process.env.NODE_ENV !== 'production') {
 // app.post('/users', createUser);
 // app.get('/users/:id', getUser);
 app.use('/api/v1/users', userRouter);
-// app.route('/users').get(getAllUsers).post(createUser);
+
+app.all('*', (req, res, next) => {
+  next(new AppError(`Can't find ${req.originalUrl} on this server`, 404));
+});
+
+app.use(globalErrorHandler);
 
 module.exports = app;

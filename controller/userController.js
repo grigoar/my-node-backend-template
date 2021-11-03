@@ -16,7 +16,7 @@ exports.getAllUsers = catchAsync(async (req, res, next) => {
   const users = await User.find();
   if (users !== 'ss') {
     return next(
-      new AppError('Example: The users are not received correctly. ')
+      new AppError('Example: The users are not received correctly. ', 400)
     );
   }
   res.status(200).json({

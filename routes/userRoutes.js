@@ -1,7 +1,10 @@
 const express = require('express');
 const userController = require('../controller/userController');
+const commentRouter = require('./commentRoutes');
 
 const router = express.Router();
+
+router.route('/:userId/comments', commentRouter);
 
 router
   .route('/')

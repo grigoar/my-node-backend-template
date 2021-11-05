@@ -4,7 +4,7 @@ const commentRouter = require('./commentRoutes');
 
 const router = express.Router();
 
-router.route('/:userId/comments', commentRouter);
+router.use('/:userId/comments', commentRouter);
 
 router
   .route('/')

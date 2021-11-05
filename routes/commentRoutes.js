@@ -2,7 +2,7 @@ const express = require('express');
 
 const commentController = require('../controller/commentController');
 
-const router = express.Router();
+const router = express.Router({ mergeParams: true });
 
 router
   .route('/')

@@ -4,7 +4,9 @@ const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 
 exports.getAllComments = catchAsync(async (req, res, next) => {
-  const comments = await Comment.find();
+  let filter = {};
+  if (req.params.userId) filter = { tour: req.params.userId };
+  const comments = await Comment.find(filter);
   if (!comments) {
     return next(new AppError('The comments were not found!', 404));
   }
@@ -14,6 +16,17 @@ exports.getAllComments = catchAsync(async (req, res, next) => {
     data: comments,
   });
 });
+// exports.getAllComments = catchAsync(async (req, res, next) => {
+//   const comments = await Comment.find();
+//   if (!comments) {
+//     return next(new AppError('The comments were not found!', 404));
+//   }
+
+//   res.status(200).json({
+//     status: 'Success',
+//     data: comments,
+//   });
+// });
 exports.getOneComment = catchAsync(async (req, res, next) => {
   const comment = await Comment.findById(req.params.id);
 

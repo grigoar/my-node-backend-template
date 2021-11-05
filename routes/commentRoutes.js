@@ -9,4 +9,10 @@ router
   .get(commentController.getAllComments)
   .post(commentController.createComment);
 
+router
+  .route('/:id')
+  .get(commentController.getOneComment)
+  .patch(commentController.updateComment)
+  .delete(commentController.deleteComment);
+
 module.exports = router;

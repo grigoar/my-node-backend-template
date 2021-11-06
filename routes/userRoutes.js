@@ -8,6 +8,7 @@ const router = express.Router();
 router.use('/:userId/comments', commentRouter);
 
 router.post('/signup', authController.signup);
+router.post('/login', authController.login);
 // router.route('/signup').post(authController.signup);
 
 router

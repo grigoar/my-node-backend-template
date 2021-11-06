@@ -56,6 +56,9 @@ userSchema.pre('save', async function (next) {
   next();
 });
 
+userSchema.methods.correctPassword = (providedPass, dbPass) =>
+  bcrypt.compare(providedPass, dbPass);
+
 const User = mongoose.model('User', userSchema);
 
 module.exports = User;

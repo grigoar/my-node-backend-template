@@ -6,9 +6,15 @@ const factory = require('./handlerFactory');
 
 exports.getOneUser = factory.getOne(User);
 exports.getAllUsers = factory.getAll(User);
-exports.createUser = factory.createOne(User);
+// exports.createUser = factory.createOne(User);
 exports.deleteUser = factory.deleteOne(User);
 exports.editUser = factory.updateOne(User);
+exports.createUser = (req, res) => {
+  res.status(500).json({
+    status: 'Error',
+    message: 'This route is not defined! Please use the sign in instead',
+  });
+};
 
 // exports.createUser = catchAsync(async (req, res) => {
 //   // console.log(req.params.id);

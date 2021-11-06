@@ -1,13 +1,14 @@
 const express = require('express');
 
 const commentController = require('../controller/commentController');
+const authController = require('../controller/authController');
 
 const router = express.Router({ mergeParams: true });
 
 router
   .route('/')
-  .get(commentController.getAllComments)
-  .post(commentController.createComment);
+  .get(authController.protect, commentController.getAllComments)
+  .post(authController.protect, commentController.createComment);
 
 router
   .route('/:id')
